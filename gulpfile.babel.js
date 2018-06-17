@@ -4,6 +4,7 @@ import babelify from 'babelify';
 import browserify from 'gulp-browserify';
 import sequence from 'gulp-sequence';
 import del from 'del';
+import sourcemaps from 'gulp-sourcemaps';
 
 const sourcePath = './src';
 const buildPath = './dist';
@@ -35,11 +36,13 @@ gulp.task('build-styles', () => {
 gulp.task('build-scripts', () => {
 	return gulp
 		.src(sourcePath + '/js/index.js')
+		.pipe(sourcemaps.init())
 		.pipe(browserify({
 			paths: [
 				sourcePath + '/js'
 			],
 			transform: babelify
 		}))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(buildPath));
 });

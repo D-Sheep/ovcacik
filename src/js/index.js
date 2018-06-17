@@ -1,2 +1,3 @@
-import mainVisual from 'components/MainVisual';
-mainVisual.init();
+import * as Helpers from 'utils/Helpers';
+import MainVisual from 'components/MainVisual';
+window.mainVisual = new MainVisual();
